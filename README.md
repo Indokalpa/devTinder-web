@@ -1,4 +1,4 @@
-- Install 'axios' to handle 'fetch' requests.
+- Install 'axios' to handle 'fetch' requests(more convinient way)
 
 - CORS ERROR : install cors in backend => add middleware with configurations: origin, and credentials: true
 
