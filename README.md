@@ -16,6 +16,8 @@
 - configure redux store, create slice, use redux dev-tools
 - NavBar should update as soon as user logs in
 - Refactor code to add constants file + create a components folder
+
+- use 'useEffect()' in Body to avoid data loss from redux store in refreshing.
 - You should not be able to access other routes without login
 - If token is not Present, redirect user to login page
 - Avoid calls, if userData is already present
