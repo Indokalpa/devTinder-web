@@ -22,4 +22,8 @@
 - If token is not Present, redirect user to login page
 - Avoid calls, if userData is already present
 - Logout feature
-- Profile page
+- Get the Feed
+- Build the user card on the feed
+- Edit Profile page
+- Show Toast on profile save
+- See all my connections
