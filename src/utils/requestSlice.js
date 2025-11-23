@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const requestSlice = createSlice({
     name: "request",
@@ -7,8 +8,12 @@ const requestSlice = createSlice({
         addRequests: (state, action) => {
             return action.payload;
         },
+        removerRequest: (state, action) => {
+            const newArray = state.filter(r=> action.payload !== r._id);
+            return newArray;
+        }
     }
 });
 
-export const { addRequests } = requestSlice.actions;
+export const { addRequests, removerRequesta } = requestSlice.actions;
 export default requestSlice.reducer;
