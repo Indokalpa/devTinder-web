@@ -5,7 +5,7 @@
 - Install Daisy UI
 - Add NavBar Component to App.jsx
 - Install react-router-dom
-- Create BrowswerRouter -> Routes -> Route=/Body -> RouteChildren inside of <outLet />
+- Create 'BrowserRouter' -> Routes -> Route=/Body -> RouteChildren inside of <outLet />
 - Create a Login Page
 - Install axios, to make fetch requests more convinient
 - CORS : install cors in backend => add as middleware, with configurations: origin, credentials: true

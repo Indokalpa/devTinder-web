@@ -16,17 +16,16 @@ const NavBar = () => {
 
       dispatch(removeUser());
       return navigate("/login");
-    } catch (err) {}
+    } catch (err) {
+      // Error Logic here
+    }
   };
 
   return (
     <div>
       <div className="navbar bg-base-300 shadow-sm">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost text-xl">
-            {" "}
-            DevTinder 🧑‍💻
-          </Link>
+          <Link to="/" className="btn btn-ghost text-xl"> DevTinder 🧑‍💻 </Link>
         </div>
 
         {user && (

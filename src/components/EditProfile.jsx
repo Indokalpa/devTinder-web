@@ -6,7 +6,7 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { addUser } from "../utils/userSlice";
 
-const EditProfile = ({ user = {} }) => {
+const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
   const [photoUrl, setPhotoUrl] = useState(user?.photoUrl);
@@ -22,7 +22,7 @@ const EditProfile = ({ user = {} }) => {
     setError("");
 
     try {
-      const res = await axios.patch(
+      const res = await axios.post(
         BASE_URL + "/profile/edit",
         {
           firstName,
@@ -116,7 +116,7 @@ const EditProfile = ({ user = {} }) => {
                 </fieldset>
               </div>
 
-              <p className="text-color-red">{error}</p>
+              <p className="text-red-500">{error}</p>
 
               <div className="card-actions justify-center my-2">
                 <button className="btn btn-primary" onClick={saveProfile}>
