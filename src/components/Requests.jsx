@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
-import { addRequests } from "../utils/requestSlice";
+import { addRequests, removeRequests } from "../utils/requestSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Requests = () => {
@@ -17,7 +17,7 @@ const Requests = () => {
           withCredentials: true,
         }
       );
-      dispatch(removerRequest(_id));
+      dispatch(removeRequests(_id));
     } catch (err) {}
   };
 
