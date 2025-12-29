@@ -32,3 +32,4 @@
 - Send/Ignore the user card form the feed
 - Signup the user
 - E2E Testing
+- modify the BASEURL in frontend project to "/api"
