@@ -17,6 +17,9 @@ const Feed = () => {
       });
       dispatch(addFeed(res.data));
     } catch (err) {
+      if (err.response?.status === 401) {
+        dispatch(addFeed([]));
+      }
       console.error(err);
     }
   };
@@ -25,16 +28,18 @@ const Feed = () => {
     getFeed();
   }, []);
 
-   if (!feed) return;
-   if (feed.length <= 0)
+  if (!feed) {
+    return <h1 className="flex justify-center my-10">Loading users...</h1>;
+  }
+
+  if (feed.length <= 0) {
     return <h1 className="flex justify-center my-10">No new users founds!</h1>;
-   
+  }
+
   return (
-    feed && (
-      <div className="flex justify-center my-10">
-        <UserCard user={feed[0]} />
-      </div>
-    )
+    <div className="mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-4xl items-center justify-center px-4 py-8">
+      <UserCard user={feed[0]} />
+    </div>
   );
 };
 

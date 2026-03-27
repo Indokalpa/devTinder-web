@@ -5,12 +5,16 @@ import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
 
 const UserCard = ({ user }) => {
+  if (!user) {
+    return null;
+  }
+
   const { _id, firstName, lastName, photoUrl, age, gender, about } = user;
   const dispatch = useDispatch();
 
   const handleSendRequest = async (status, userId) => {
     try {
-      const res = await axios.post(
+      await axios.post(
         BASE_URL + "/request/send/" + status + "/" + userId,
         {},
         { withCredentials: true }
@@ -18,30 +22,39 @@ const UserCard = ({ user }) => {
       dispatch(removeUserFromFeed(userId));
     } catch (err) {}
   };
+
   return (
-    <div>
-      <div className="card bg-base-300 w-96 shadow-sm h-1/2">
-        <figure>
-          <img src={photoUrl} alt="photo" />
+    <div className="w-full max-w-[18rem]">
+      <div className="card overflow-hidden rounded-3xl bg-base-200 shadow-xl">
+        <figure className="aspect-[3/4] bg-base-300">
+          <img
+            src={photoUrl || "https://placehold.co/600x750?text=No+Photo"}
+            alt={`${firstName || "User"} profile`}
+            className="h-full w-full object-cover"
+          />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">{firstName + " " + lastName}</h2>
-          {age && gender && <p> {age + "  " + gender} </p>}
-          <p>{about}</p>
-          <div className="card-actions flex justify-around my-2">
+        <div className="card-body p-5">
+          <h2 className="card-title text-xl">
+            {[firstName, lastName].filter(Boolean).join(" ")}
+          </h2>
+          {(age || gender) && (
+            <p className="text-sm opacity-70">
+              {[age, gender].filter(Boolean).join(" - ")}
+            </p>
+          )}
+          <p className="text-sm leading-5">{about || "No bio added yet."}</p>
+          <div className="card-actions mt-3 grid grid-cols-2 gap-2">
             <button
-              className="btn btn-primary"
+              className="btn btn-outline btn-sm"
               onClick={() => handleSendRequest("ignored", _id)}
             >
-              {" "}
-              Ignore{" "}
+              Ignore
             </button>
             <button
-              className="btn btn-secondary"
+              className="btn btn-primary btn-sm"
               onClick={() => handleSendRequest("interested", _id)}
             >
-              {" "}
-              Interested{" "}
+              Interested
             </button>
           </div>
         </div>

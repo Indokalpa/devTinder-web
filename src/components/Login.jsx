@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
+import { clearFeed } from "../utils/feedSlice";
+import { removeConnections } from "../utils/connectionSlice";
+import { clearRequests } from "../utils/requestSlice";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("");
@@ -26,6 +29,9 @@ const Login = () => {
         { withCredentials: true }
       );
 
+      dispatch(clearFeed());
+      dispatch(removeConnections());
+      dispatch(clearRequests());
       dispatch(addUser(res.data));
       return navigate("/");
     } catch (err) {
@@ -38,6 +44,9 @@ const Login = () => {
       const res = await axios.post(BASE_URL + "/signup", 
         {firstName, lastName, emailId, password}, 
         {withCredentials: true});
+      dispatch(clearFeed());
+      dispatch(removeConnections());
+      dispatch(clearRequests());
       dispatch(addUser(res.data.data));
       return navigate("/profile");
     }catch(err){
