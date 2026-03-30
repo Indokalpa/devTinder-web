@@ -26,7 +26,7 @@ const UserCard = ({ user }) => {
   return (
     <div className="w-full max-w-[18rem]">
       <div className="card overflow-hidden rounded-3xl bg-base-200 shadow-xl">
-        <figure className="aspect-[3/4] bg-base-300">
+        <figure className="aspect-auto bg-base-300">
           <img
             src={photoUrl || "https://placehold.co/600x750?text=No+Photo"}
             alt={`${firstName || "User"} profile`}
